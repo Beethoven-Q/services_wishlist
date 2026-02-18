@@ -21,9 +21,9 @@
       "requested_by": "tidybot",
       "reason": "YOLO detection is limited to its fixed class vocabulary. For real-world manipulation tasks we need open-vocabulary perception \u2014 the ability to detect and segment arbitrary objects described in natural language. Grounded SAM 2 enables this by combining Grounding DINO's text-conditioned detection with SAM 2's high-quality segmentation.",
       "votes": 1,
-      "status": "done",
-      "assigned": "steve",
-      "completed_at": "2026-02-14T02:15:00Z"
+      "status": "pending",
+      "assigned": null,
+      "completed_at": null
     },
     {
       "id": "graspgen",
@@ -33,9 +33,9 @@
       "requested_by": "tidybot",
       "reason": "Currently there is no automated way to compute stable grasp poses for arbitrary objects. Perception models like YOLO and Grounded SAM 2 can detect and segment objects, but translating that into a feasible end-effector pose for the Franka gripper requires a dedicated grasp generation model. GraspGen closes this gap in the pick-and-place pipeline.",
       "votes": 1,
-      "status": "done",
-      "assigned": "steve",
-      "completed_at": "2026-02-14T02:15:00Z"
+      "status": "pending",
+      "assigned": null,
+      "completed_at": null
     },
     {
       "id": "foundation-stereo",
@@ -45,9 +45,9 @@
       "requested_by": "tidybot",
       "reason": "RealSense IR stereo depth is noisy on reflective and transparent surfaces commonly found in tabletop manipulation (e.g., glass, plastic wrap, metallic objects). FoundationStereo provides learned stereo matching that handles these failure cases, giving more reliable depth for downstream tasks like grasp generation and 3D segmentation.",
       "votes": 1,
-      "status": "done",
-      "assigned": "steve",
-      "completed_at": "2026-02-14T02:15:00Z"
+      "status": "pending",
+      "assigned": null,
+      "completed_at": null
     },
     {
       "id": "raw-depth-sdk",
@@ -69,9 +69,9 @@
       "requested_by": "jarvis",
       "reason": "Building SLAM and path planning from scratch in a robot skill is reinventing the wheel poorly. Established robotics navigation stacks (ROS nav2, RTAB-Map, cartographer) have years of engineering for loop closure, robust mapping, dynamic obstacle handling, and kinematic-aware planning. A dedicated service can use these proven implementations and expose a simple HTTP API. Multiple skills (collect-all-objects, patrol, explore, deliver) all need navigation \u2014 a shared service avoids duplicating fragile mapping code in every skill. Depends on raw-depth-sdk or direct depth ingestion.",
       "votes": 1,
-      "status": "done",
-      "assigned": "steve",
-      "completed_at": "2026-02-15T08:00:00Z"
+      "status": "pending",
+      "assigned": null,
+      "completed_at": null
     },
     {
       "id": "realsense-slam",
@@ -81,9 +81,9 @@
       "requested_by": "jarvis",
       "reason": "The nav-mapping-service provides path planning on a given map, but we lack a proper visual SLAM frontend that continuously builds and maintains that map from raw sensor data. RTAB-Map has first-class RealSense support, handles loop closure, and can run standalone without ROS. This would give the robot persistent spatial awareness \u2014 knowing where it is in the room and what the environment looks like \u2014 which is foundational for autonomous navigation, multi-room tasks, and returning to known locations.",
       "votes": 1,
-      "status": "done",
-      "assigned": "steve",
-      "completed_at": "2026-02-16T07:02:20Z"
+      "status": "pending",
+      "assigned": null,
+      "completed_at": null
     },
     {
       "id": "lightweight-grasp-net",
@@ -93,9 +93,9 @@
       "requested_by": "jarvis",
       "reason": "GraspGen is available but diffusion-based models are heavier and slower. For real-time closed-loop grasping \u2014 where the robot needs to re-evaluate grasps as it approaches \u2014 we need something that runs in under 50ms. GR-ConvNet v2 does 14-20ms inference on RGB-D, graspnet-baseline has pretrained RealSense checkpoints, and AnyGrasp offers a ready-made SDK. A lightweight grasp service would complement the existing visual servoing skills by providing smarter grasp pose selection instead of relying on fixed approach angles.",
       "votes": 1,
-      "status": "done",
-      "assigned": "steve",
-      "completed_at": "2026-02-16T08:04:16Z"
+      "status": "pending",
+      "assigned": null,
+      "completed_at": null
     },
     {
       "id": "local-obstacle-avoidance",
@@ -105,9 +105,9 @@
       "requested_by": "jarvis",
       "reason": "The base currently drives blind \u2014 move_to_pose and move_delta have no awareness of obstacles. The front-facing RealSense base_cam already provides depth that can be projected into a 2D slice for obstacle detection. A local planner (DWA or VFH) running at 10-30Hz on the depth stream would let the base navigate safely around chairs, tables, and people without needing a full SLAM map. This is the minimum viable safety layer for autonomous base movement.",
       "votes": 1,
-      "status": "done",
-      "assigned": "steve",
-      "completed_at": "2026-02-16T08:03:00Z"
+      "status": "pending",
+      "assigned": null,
+      "completed_at": null
     }
   ]
 }
