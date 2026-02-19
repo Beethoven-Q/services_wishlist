@@ -1,1 +1,30 @@
-{"capabilities":{"lightweight-grasp-detection":{"host":"http://localhost:8004","model":"gr-convnet-v2","repo":"Selina22/lightweight-grasp-net","description":"Real-time RGB-D grasp detection. Returns ranked parallel-jaw grasp candidates.","endpoints":{"health":"GET /health","predict":"POST /predict"}}}}
+{
+  "capabilities": {
+    "camera-extrinsic-calibration": {
+      "host": "http://localhost:8000",
+      "repo": "https://github.com/Selina22/camera-extrinsic-calibration",
+      "description": "Camera extrinsic calibration: manages 4x4 transforms between camera and robot base frames",
+      "endpoints": [
+        "GET /health",
+        "GET /transforms",
+        "GET /transforms/{camera_id}",
+        "POST /transforms/{camera_id}",
+        "POST /calibrate"
+      ]
+    },
+    "realsense_slam": {
+      "name": "RealSense SLAM (Visual Odometry)",
+      "description": "Visual SLAM using OpenCV feature-based odometry consuming RGB-D frames. Provides 6-DOF pose, 3D point cloud, 2D occupancy grid, loop closure detection, map persistence.",
+      "host": "http://localhost:8007",
+      "port": 8007,
+      "client_sdk": "https://raw.githubusercontent.com/Selina22/realsense-slam/master/client.py",
+      "api_docs": "https://github.com/Selina22/realsense-slam",
+      "usage": {
+        "import": "from client import Client",
+        "init": "client = Client('http://localhost:8007')",
+        "example": "pose = client.submit_frame(rgb_bytes, depth_bytes)",
+        "returns": "dict with position, orientation, 4x4 matrix"
+      }
+    }
+  }
+}
