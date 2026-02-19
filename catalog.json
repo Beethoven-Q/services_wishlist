@@ -1,0 +1,18 @@
+{
+  "capabilities": {
+    "local-obstacle-avoidance": {
+      "host": "http://localhost:8008",
+      "port": 8008,
+      "repo": "https://github.com/Beethoven-Q/local-obstacle-avoidance",
+      "description": "Real-time local obstacle avoidance for mobile base using depth camera. VFH-based safe velocity, emergency stop.",
+      "client_sdk": "https://raw.githubusercontent.com/Beethoven-Q/local-obstacle-avoidance/master/client.py",
+      "endpoints": [
+        "POST /update",
+        "POST /command",
+        "GET /costmap",
+        "GET /estop",
+        "GET /health"
+      ]
+    }
+  }
+}
