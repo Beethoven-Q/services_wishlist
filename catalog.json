@@ -25,6 +25,19 @@
         "example": "pose = client.submit_frame(rgb_bytes, depth_bytes)",
         "returns": "dict with position, orientation, 4x4 matrix"
       }
+    },
+    "nav-mapping": {
+      "host": "http://localhost:8006",
+      "repo": "https://github.com/Selina22/nav-mapping-service",
+      "description": "2D occupancy grid mapping, A* path planning, frontier detection",
+      "port": 8006,
+      "endpoints": [
+        "POST /update",
+        "GET /map",
+        "POST /plan",
+        "GET /frontiers",
+        "GET /health"
+      ]
     }
   }
 }
