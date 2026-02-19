@@ -1,1 +1,18 @@
-
+{
+  "capabilities": {
+    "raw_depth_frame": {
+      "name": "Raw Depth Frame Access",
+      "description": "Returns raw depth frames from RealSense cameras as numpy arrays (uint16 mm or float32 m)",
+      "host": "http://localhost:8005",
+      "port": 8005,
+      "client_sdk": "https://raw.githubusercontent.com/Selina22/raw-depth-sdk/main/client.py",
+      "api_docs": "https://github.com/Selina22/raw-depth-sdk",
+      "usage": {
+        "import": "from client import Client",
+        "init": "client = Client('http://localhost:8005')",
+        "example": "depth = client.get_depth_frame('cam0')",
+        "returns": "numpy.ndarray (H,W) uint16 millimetres or float32 metres"
+      }
+    }
+  }
+}
