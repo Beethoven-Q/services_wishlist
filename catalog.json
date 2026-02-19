@@ -13,6 +13,23 @@
         "GET /estop",
         "GET /health"
       ]
+    },
+    "graspgen": {
+      "host": "http://localhost:8002",
+      "port": 8002,
+      "repo": "https://github.com/Selina22/graspgen",
+      "description": "6-DOF grasp pose generation using Contact-GraspNet. Accepts depth image or point cloud, returns ranked grasp poses as 4x4 homogeneous transforms with quality scores.",
+      "client_sdk": "https://raw.githubusercontent.com/Selina22/graspgen/master/client.py",
+      "endpoints": [
+        "POST /predict",
+        "GET /health"
+      ],
+      "usage": {
+        "import": "from client import Client",
+        "init": "c = Client(\"http://localhost:8002\")",
+        "example": "result = c.predict(depth_image=img_bytes, K=[fx,0,cx,0,fy,cy,0,0,1])",
+        "returns": "{\"grasps\": [{\"transform\": 4x4, \"score\": float, \"contact_point\": [x,y,z], \"gripper_opening\": float}], \"num_grasps\": int, \"inference_time_ms\": float}"
+      }
     }
   }
 }
