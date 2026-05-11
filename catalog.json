@@ -1,5 +1,99 @@
 {
   "capabilities": {
+    "camera-extrinsic-calibration": {
+      "host": "http://localhost:8000",
+      "port": 8000,
+      "repo": "https://github.com/Beethoven-Q/camera-extrinsic-calibration",
+      "description": "Extrinsic calibration service providing 4x4 homogeneous transforms between camera frames and robot base frame for 3D coordinate conversion.",
+      "client_sdk": "https://raw.githubusercontent.com/Beethoven-Q/camera-extrinsic-calibration/master/client.py",
+      "endpoints": [
+        "GET /health",
+        "GET /transforms",
+        "GET /transform/{camera_id}"
+      ]
+    },
+    "grounded-sam2": {
+      "host": "http://localhost:8001",
+      "port": 8001,
+      "repo": "https://github.com/Beethoven-Q/grounded-sam2",
+      "description": "Open-vocabulary object detection and segmentation using Grounding DINO + SAM 2. Accepts image + text prompt, returns bounding boxes, masks, and confidence scores.",
+      "client_sdk": "https://raw.githubusercontent.com/Beethoven-Q/grounded-sam2/master/client.py",
+      "endpoints": [
+        "POST /predict",
+        "GET /health"
+      ]
+    },
+    "graspgen": {
+      "host": "http://localhost:8002",
+      "port": 8002,
+      "repo": "https://github.com/Beethoven-Q/graspgen",
+      "description": "6-DOF grasp pose generation using Contact-GraspNet. Accepts depth image or point cloud, returns ranked grasp poses as 4x4 homogeneous transforms with quality scores.",
+      "client_sdk": "https://raw.githubusercontent.com/Beethoven-Q/graspgen/master/client.py",
+      "endpoints": [
+        "POST /predict",
+        "GET /health"
+      ]
+    },
+    "foundation-stereo": {
+      "host": "http://localhost:8003",
+      "port": 8003,
+      "repo": "https://github.com/Beethoven-Q/foundation-stereo",
+      "description": "High-quality stereo depth estimation using FoundationStereo. Accepts rectified stereo image pairs, returns dense disparity and metric depth maps.",
+      "client_sdk": "https://raw.githubusercontent.com/Beethoven-Q/foundation-stereo/master/client.py",
+      "endpoints": [
+        "POST /predict",
+        "GET /health"
+      ]
+    },
+    "lightweight-grasp-net": {
+      "host": "http://localhost:8004",
+      "port": 8004,
+      "repo": "https://github.com/Beethoven-Q/lightweight-grasp-net",
+      "description": "Real-time RGB-D grasp detection using GR-ConvNet v2. Fast inference (<50ms) for closed-loop grasping. Returns ranked grasp candidates with position, angle, width, quality.",
+      "client_sdk": "https://raw.githubusercontent.com/Beethoven-Q/lightweight-grasp-net/master/client.py",
+      "endpoints": [
+        "POST /predict",
+        "GET /health"
+      ]
+    },
+    "raw-depth-sdk": {
+      "host": "http://localhost:8005",
+      "port": 8005,
+      "repo": "https://github.com/Beethoven-Q/raw-depth-sdk",
+      "description": "Raw depth frame access SDK. Provides depth images as numpy arrays from RealSense cameras via SDK methods, bypassing HTTP import restrictions in the sandbox.",
+      "client_sdk": "https://raw.githubusercontent.com/Beethoven-Q/raw-depth-sdk/master/client.py",
+      "endpoints": [
+        "GET /health",
+        "GET /cameras/{id}/frame?stream=depth"
+      ]
+    },
+    "nav-mapping-service": {
+      "host": "http://localhost:8006",
+      "port": 8006,
+      "repo": "https://github.com/Beethoven-Q/nav-mapping-service",
+      "description": "Navigation and occupancy mapping service. Maintains 2D occupancy grid, provides path planning (A*/RRT*), frontier exploration, and map persistence.",
+      "client_sdk": "https://raw.githubusercontent.com/Beethoven-Q/nav-mapping-service/master/client.py",
+      "endpoints": [
+        "POST /update",
+        "GET /map",
+        "POST /plan",
+        "GET /frontiers",
+        "GET /health"
+      ]
+    },
+    "realsense-slam": {
+      "host": "http://localhost:8007",
+      "port": 8007,
+      "repo": "https://github.com/Beethoven-Q/realsense-slam",
+      "description": "RealSense visual SLAM using RTAB-Map. Real-time 6-DOF pose estimation, incremental 3D mapping, loop closure, map save/load for persistent localization.",
+      "client_sdk": "https://raw.githubusercontent.com/Beethoven-Q/realsense-slam/master/client.py",
+      "endpoints": [
+        "GET /pose",
+        "GET /map",
+        "POST /update",
+        "GET /health"
+      ]
+    },
     "local-obstacle-avoidance": {
       "host": "http://localhost:8008",
       "port": 8008,
@@ -13,23 +107,6 @@
         "GET /estop",
         "GET /health"
       ]
-    },
-    "graspgen": {
-      "host": "http://localhost:8002",
-      "port": 8002,
-      "repo": "https://github.com/Selina22/graspgen",
-      "description": "6-DOF grasp pose generation using Contact-GraspNet. Accepts depth image or point cloud, returns ranked grasp poses as 4x4 homogeneous transforms with quality scores.",
-      "client_sdk": "https://raw.githubusercontent.com/Selina22/graspgen/master/client.py",
-      "endpoints": [
-        "POST /predict",
-        "GET /health"
-      ],
-      "usage": {
-        "import": "from client import Client",
-        "init": "c = Client(\"http://localhost:8002\")",
-        "example": "result = c.predict(depth_image=img_bytes, K=[fx,0,cx,0,fy,cy,0,0,1])",
-        "returns": "{\"grasps\": [{\"transform\": 4x4, \"score\": float, \"contact_point\": [x,y,z], \"gripper_opening\": float}], \"num_grasps\": int, \"inference_time_ms\": float}"
-      }
     }
   }
 }
